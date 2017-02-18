@@ -16,12 +16,13 @@ observableUserProfile.name = 'Michael'
 
 observableUserProfile.name === 'Michael' // true
 
+// revert to the default values
+
+observableUserProfile.reset()
 
 //Don't need it anymore?
 
 observableUserProfile.dispose()
 
-// revert to the default values
 
-observableUserProfile.reset()
 ```
