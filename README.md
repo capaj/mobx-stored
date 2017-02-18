@@ -1,9 +1,9 @@
-# mobx-stored-observable
+# mobx-stored
 a library giving you persistent observable variables
 
 ## usage
 ```javascript
-import storedObservable from './stored-observable'
+import storedObservable from 'mobx-stored'
 
 const defaultUser = {email: null, firstname: null, lastname: null}
 const observableUserProfile = storedObservable('userProfile', defaultUser, 500)   // last paremeter is optional
@@ -16,12 +16,13 @@ observableUserProfile.name = 'Michael'
 
 observableUserProfile.name === 'Michael' // true
 
+// revert to the default values
+
+observableUserProfile.reset()
 
 //Don't need it anymore?
 
 observableUserProfile.dispose()
 
-// revert to the default values
 
-observableUserProfile.reset()
 ```
