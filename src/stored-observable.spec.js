@@ -43,4 +43,3 @@ test.cb('extends existing value', (t) => {
   t.end()
 })
 
-

@@ -6,7 +6,7 @@ a library giving you persistent observable variables
 import storedObservable from 'mobx-stored'
 
 const defaultUser = {email: null, firstname: null, lastname: null}
-const observableUserProfile = storedObservable('userProfile', defaultUser, 500)   // last paremeter is optional
+const observableUserProfile = storedObservable('userProfile', defaultUser, 500)   // last parameter is optional-miliseconds how often do you want to save into localStorage. It is advised to use bigger value with bigger stores
 
 // now any changes made to the observableUserProfile are synced in localStorage
 
