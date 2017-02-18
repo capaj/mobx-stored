@@ -3,7 +3,7 @@ a library giving you persistent observable variables
 
 ## usage
 ```javascript
-import storedObservable from './stored-observable'
+import storedObservable from 'mobx-stored'
 
 const defaultUser = {email: null, firstname: null, lastname: null}
 const observableUserProfile = storedObservable('userProfile', defaultUser, 500)   // last paremeter is optional
