@@ -1,4 +1,4 @@
-# mobx-stored-observable
+# mobx-stored
 a library giving you persistent observable variables
 
 ## usage
