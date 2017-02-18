@@ -25,6 +25,15 @@ test.cb('saves in localStorage, resets and disposes', t => {
   }, 2)
 })
 
+test('resets even if stored before', (t) => {
+  localStorage.testThree = '{"a":10,"b":11}'
+  const def = {a: 1, b: 2}
+  const obs = storedObservable('testThree', def, 1)
+  obs.reset()
+  t.is(obs.a, 1)
+  t.is(obs.b, 2)
+})
+
 test.cb('extends existing value', (t) => {
   localStorage.testTwo = '{"a":5,"b":8}'
   const def = {a: 1, b: 2, c: 0}
