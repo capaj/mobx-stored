@@ -1,0 +1,37 @@
+/* global localStorage */
+
+import 'localstorage-polyfill'
+import test from 'ava'
+import storedObservable from './stored-observable'
+
+test.cb('saves in localStorage, resets and disposes', t => {
+  const def = {a: 1, b: 2}
+  const obs = storedObservable('test', def, 1)
+  setTimeout(() => {
+    t.is(localStorage.test, '{"a":1,"b":2}')
+
+    obs.a += 1
+    setTimeout(() => {
+      t.is(localStorage.test, '{"a":2,"b":2}')
+      obs.reset()
+      t.is(obs.a, 1)
+      setTimeout(() => {
+        t.is(localStorage.test, '{"a":1,"b":2}')
+        obs.dispose()
+        t.is(localStorage.test, undefined)
+        t.end()
+      }, 2)
+    }, 2)
+  }, 2)
+})
+
+test.cb('extends existing value', (t) => {
+  localStorage.testTwo = '{"a":5,"b":8}'
+  const def = {a: 1, b: 2, c: 0}
+  const obs = storedObservable('testTwo', def, 1)
+  t.is(obs.a, 5)
+  t.is(obs.c, 0)
+  t.end()
+})
+
+
