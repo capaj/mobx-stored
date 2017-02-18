@@ -15,4 +15,13 @@ observableUserProfile.name = 'Michael'
 // after 500ms and reloading the page
 
 observableUserProfile.name === 'Michael' // true
+
+
+//Don't need it anymore?
+
+observableUserProfile.dispose()
+
+// revert to the default values
+
+observableUserProfile.reset()
 ```
