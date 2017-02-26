@@ -19,12 +19,22 @@ function storedObservable (key, defaultValue, debounce = 500) {
   const dispose = autorunAsync(() => {
     localStorage.setItem(key, JSON.stringify(getStateWithoutComputeds()))
   }, debounce)
+
+  const propagateChanges = (e) => {  
+    if (e.key === key) {
+      const newValue = JSON.parse(e.newValue)
+      merge(obsVal, newValue)
+    }
+  }
+  window.addEventListener('storage', propagateChanges)
+
   obsVal.reset = () => {
     extendObservable(obsVal, defaultValue)
   }
   obsVal.dispose = () => {
     dispose()
     localStorage.removeItem(key)
+    window.removeEventListener(propagateChanges)
   }
   return obsVal
 }

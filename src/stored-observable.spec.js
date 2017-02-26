@@ -4,6 +4,15 @@ import 'localstorage-polyfill'
 import test from 'ava'
 import storedObservable from './stored-observable'
 
+global.window = {
+  addEventListener () {
+
+  },
+  removeEventListener () {
+
+  }
+}
+
 test.cb('saves in localStorage, resets and disposes', t => {
   const def = {a: 1, b: 2}
   const obs = storedObservable('test', def, 1)
