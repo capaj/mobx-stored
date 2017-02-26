@@ -1,5 +1,5 @@
 # mobx-stored
-a library giving you persistent observable variables
+a library giving you persistent observable variables. Not only they persist trough sessions, they also synchronize via storage events across all browser tabs.
 
 ## usage
 ```javascript

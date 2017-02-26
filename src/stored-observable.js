@@ -16,14 +16,21 @@ function storedObservable (key, defaultValue, debounce = 500) {
     return omit(obsVal, getterPaths)
   }
   const obsVal = observable(defaultClone)
-  const dispose = autorunAsync(() => {
-    localStorage.setItem(key, JSON.stringify(getStateWithoutComputeds()))
-  }, debounce)
+  let disposeAutorun
+  const establishAutorun = () => {
+    disposeAutorun = autorunAsync(() => {
+      localStorage.setItem(key, JSON.stringify(getStateWithoutComputeds()))
+    }, debounce)
+  }
+  establishAutorun()
 
-  const propagateChanges = (e) => {  
+  const propagateChanges = (e) => {
     if (e.key === key) {
+      disposeAutorun()
       const newValue = JSON.parse(e.newValue)
-      merge(obsVal, newValue)
+      extendObservable(obsVal, newValue)
+
+      establishAutorun()
     }
   }
   window.addEventListener('storage', propagateChanges)
@@ -32,7 +39,7 @@ function storedObservable (key, defaultValue, debounce = 500) {
     extendObservable(obsVal, defaultValue)
   }
   obsVal.dispose = () => {
-    dispose()
+    disposeAutorun()
     localStorage.removeItem(key)
     window.removeEventListener(propagateChanges)
   }
