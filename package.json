@@ -1,6 +1,6 @@
 {
   "name": "mobx-stored",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "localstorage persisted observables",
   "main": "stored-observable.js",
   "module": "src/stored-observable.js",
@@ -48,6 +48,13 @@
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
-    "lodash.merge": "^4.6.0"
+    "lodash.merge": "^4.6.0",
+    "lodash.omit": "^4.5.0",
+    "traverse": "^0.6.6"
+  },
+  "standard": {
+    "ignore": [
+      "stored-observable.js"
+    ]
   }
 }

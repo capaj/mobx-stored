@@ -43,3 +43,19 @@ test.cb('extends existing value', (t) => {
   t.end()
 })
 
+test.cb('can use computeds', t => {
+  const def = {
+    a: 1,
+    b: 2,
+    get sum () {
+      return this.a + this.b
+    }
+  }
+  const obs = storedObservable('testComputeds', def, 1)
+  t.is(obs.sum, 3)
+  setTimeout(() => {
+    t.is(localStorage.testComputeds, '{"a":1,"b":2}')
+    t.end()
+  }, 2)
+})
+

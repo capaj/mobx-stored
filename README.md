@@ -23,6 +23,18 @@ observableUserProfile.reset()
 //Don't need it anymore?
 
 observableUserProfile.dispose()
-
-
 ```
+
+Also it is smart enough not to serialize getters(computeds) so if you have 
+
+```javascript
+const defaultUser = {
+  firstname: null, 
+  lastname: null,
+  get name () {
+    return this.firstname + this.lastname
+  }
+}
+```
+
+name property won't be serialized into localStorage
