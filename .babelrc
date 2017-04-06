@@ -1,5 +1,22 @@
 {
+  "env": {
+  "rollup": {
     "presets": [
+        [
+          "es2015",
+          {
+            "modules": false
+          }
+        ]
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    },
+    "ava": {
+      "presets": [
         "es2015"
-    ]
+      ]
+    }
+  }
 }

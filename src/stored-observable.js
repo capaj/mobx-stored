@@ -24,7 +24,7 @@ function storedObservable (key, defaultValue, debounce = 500) {
   }
   establishAutorun()
 
-  const propagateChanges = (e) => {
+  const propagateChangesToMemory = (e) => {
     if (e.key === key) {
       disposeAutorun()
       const newValue = JSON.parse(e.newValue)
@@ -33,7 +33,7 @@ function storedObservable (key, defaultValue, debounce = 500) {
       establishAutorun()
     }
   }
-  window.addEventListener('storage', propagateChanges)
+  window.addEventListener('storage', propagateChangesToMemory)
 
   obsVal.reset = () => {
     extendObservable(obsVal, defaultValue)
@@ -41,7 +41,7 @@ function storedObservable (key, defaultValue, debounce = 500) {
   obsVal.dispose = () => {
     disposeAutorun()
     localStorage.removeItem(key)
-    window.removeEventListener(propagateChanges)
+    window.removeEventListener(propagateChangesToMemory)
   }
   return obsVal
 }
