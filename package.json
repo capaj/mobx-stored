@@ -2,8 +2,8 @@
   "name": "mobx-stored",
   "version": "0.9.6",
   "description": "localstorage persisted observables",
-  "main": "stored-observable.cjs.js",
-  "module": "stored-observable.es.js",
+  "main": "dist/stored-observable.cjs.js",
+  "module": "dist/stored-observable.es.js",
   "scripts": {
     "build": "BABEL_ENV=rollup rollup -c",
     "test": "BABEL_ENV=ava ava",
