@@ -41,10 +41,9 @@ function storedObservable (key, defaultValue, debounce = 500) {
   obsVal.dispose = () => {
     disposeAutorun()
     localStorage.removeItem(key)
-    window.removeEventListener(propagateChangesToMemory)
+    window.removeEventListener('storage', propagateChangesToMemory)
   }
   return obsVal
 }
 
 export default storedObservable
-
