@@ -67,4 +67,3 @@ test.cb('can use computeds', t => {
     t.end()
   }, 2)
 })
-

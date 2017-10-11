@@ -1,6 +1,6 @@
 {
   "name": "mobx-stored",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "localstorage persisted observables",
   "main": "dist/stored-observable.cjs.js",
   "module": "dist/stored-observable.es.js",
