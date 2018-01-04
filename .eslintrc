@@ -1,0 +1,14 @@
+{
+  "extends": ["standard"],
+  "rules": {
+    "prettier/prettier": "error",
+    "space-before-function-paren": "off",
+    "standard/computed-property-even-spacing": "off",
+    "flowtype/generic-spacing": "off",
+    "no-unexpected-multiline": "off",
+    "indent": "off"
+  },
+  "parser": "babel-eslint",
+  "plugins": ["prettier"],
+  "root": true
+}
