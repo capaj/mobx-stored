@@ -1,6 +1,6 @@
 # mobx-stored
 
-a library giving you persistent observables. Not only they persist through sessions, they also synchronize via storage events across all browser tabs.
+a simple utility for persisting POJO objects into localStorage via mobx observables. Not only they persist through sessions, they also synchronize via storage events across all browser tabs.
 
 ## usage
 
