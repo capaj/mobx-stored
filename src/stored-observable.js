@@ -33,9 +33,16 @@ function factory(storage) {
     window.addEventListener('storage', propagateChangesToMemory)
 
     obsVal.reset = () => {
+      disposeAutorun && disposeAutorun()
       extendObservable(obsVal, defaultValue)
+      establishAutorun()
     }
-    obsVal.dispose = () => {
+    obsVal.extend = obj => {
+      disposeAutorun && disposeAutorun()
+      extendObservable(obsVal, obj)
+      establishAutorun()
+    }
+    obsVal.destroy = () => {
       disposeAutorun()
       storage.removeItem(key)
       window.removeEventListener('storage', propagateChangesToMemory)

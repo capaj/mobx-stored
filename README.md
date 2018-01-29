@@ -6,7 +6,7 @@ a simple utility for persisting POJO objects into localStorage via mobx observab
 
 ```javascript
 import { localStored } from 'mobx-stored'
-import { sessionStored } from 'mobx-stored'
+import { sessionStored } from 'mobx-stored' // for using sessionStorage rather than localStorage
 
 const defaultUser = { email: null, firstname: null, lastname: null }
 const observableUserProfile = localStored('userProfile', defaultUser, 500) // last parameter is optional-miliseconds how often do you want to save into localStorage. It is advised to use bigger value with bigger stores
@@ -23,7 +23,13 @@ observableUserProfile.name === 'Michael' // true
 
 observableUserProfile.reset()
 
+// need to add new properties?
+
+observableUserProfile.extend({
+  myNewProp: 1
+})
+
 //Don't need it anymore?
 
-observableUserProfile.dispose()
+observableUserProfile.destroy()
 ```

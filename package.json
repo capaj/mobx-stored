@@ -1,6 +1,6 @@
 {
   "name": "mobx-stored",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "localstorage persisted observables",
   "main": "dist/stored-observable.cjs.js",
   "module": "dist/stored-observable.es.js",
@@ -9,17 +9,13 @@
     "test": "BABEL_ENV=ava ava",
     "dev": "BABEL_ENV=ava ava -w",
     "pretest": "standard",
-    "prepublish": "npm run build"
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/capaj/mobx-stored.git"
   },
-  "keywords": [
-    "mobx",
-    "observable",
-    "localstorage"
-  ],
+  "keywords": ["mobx", "observable", "localstorage"],
   "author": "capajj@gmail.com",
   "license": "MIT",
   "bugs": {
@@ -52,12 +48,8 @@
     "mobx": "^3.4.1"
   },
   "ava": {
-    "files": [
-      "**/*.spec.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
+    "files": ["**/*.spec.js"],
+    "require": ["babel-register"],
     "babel": "inherit"
   },
   "dependencies": {
@@ -66,8 +58,6 @@
     "traverse": "^0.6.6"
   },
   "standard": {
-    "ignore": [
-      "stored-observable.js"
-    ]
+    "ignore": ["stored-observable.js"]
   }
 }

@@ -5,8 +5,8 @@ import test from 'ava'
 import { localStored } from './stored-observable'
 
 global.window = {
-  addEventListener() {},
-  removeEventListener() {}
+  addEventListener () {},
+  removeEventListener () {}
 }
 
 test.cb('saves in localStorage, resets and disposes', t => {
@@ -22,7 +22,7 @@ test.cb('saves in localStorage, resets and disposes', t => {
       t.is(obs.a, 1)
       setTimeout(() => {
         t.is(localStorage.test, '{"a":1,"b":2}')
-        obs.dispose()
+        obs.destroy()
         t.is(localStorage.test, undefined)
         t.end()
       }, 2)
@@ -46,4 +46,14 @@ test.cb('extends existing value', t => {
   t.is(obs.a, 5)
   t.is(obs.c, 0)
   t.end()
+})
+
+test.cb('can extend stored observable itself', t => {
+  const def = { a: 1, b: 2, c: 3 }
+  const obs = localStored('testFour', def, 1)
+  obs.extend({ d: 4 })
+  setTimeout(() => {
+    t.is(localStorage.testFour, '{"a":1,"b":2,"c":3,"d":4}')
+    t.end()
+  }, 2)
 })
