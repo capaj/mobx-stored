@@ -1,10 +1,14 @@
 /* global localStorage, sessionStorage */
-import { observable, autorunAsync, extendObservable, toJS } from 'mobx'
+import { observable, autorun, set, toJS } from 'mobx'
 import merge from 'lodash.merge'
 import cloneDeep from 'lodash.clonedeep'
 
 function factory(storage) {
-  return function storedObservable(key, defaultValue, debounce = 500) {
+  return function storedObservable(
+    key,
+    defaultValue,
+    autorunOpts = { delay: 500 }
+  ) {
     let fromStorage = storage.getItem(key)
 
     const defaultClone = cloneDeep(defaultValue) // we don't want to modify the given object, because userscript might want to use the original object to reset the state back to default values some time later
@@ -15,9 +19,9 @@ function factory(storage) {
     const obsVal = observable(defaultClone)
     let disposeAutorun
     const establishAutorun = () => {
-      disposeAutorun = autorunAsync(() => {
+      disposeAutorun = autorun(() => {
         storage.setItem(key, JSON.stringify(toJS(obsVal)))
-      }, debounce)
+      }, autorunOpts)
     }
     establishAutorun()
 
@@ -25,7 +29,7 @@ function factory(storage) {
       if (e.key === key) {
         disposeAutorun()
         const newValue = JSON.parse(e.newValue)
-        extendObservable(obsVal, newValue)
+        set(obsVal, newValue)
 
         establishAutorun()
       }
@@ -34,12 +38,12 @@ function factory(storage) {
 
     obsVal.reset = () => {
       disposeAutorun && disposeAutorun()
-      extendObservable(obsVal, defaultValue)
+      set(obsVal, defaultValue)
       establishAutorun()
     }
     obsVal.extend = obj => {
       disposeAutorun && disposeAutorun()
-      extendObservable(obsVal, obj)
+      set(obsVal, obj)
       establishAutorun()
     }
     obsVal.destroy = () => {

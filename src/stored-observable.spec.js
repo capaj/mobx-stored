@@ -5,8 +5,8 @@ import test from 'ava'
 import { localStored } from './stored-observable'
 
 global.window = {
-  addEventListener () {},
-  removeEventListener () {}
+  addEventListener() {},
+  removeEventListener() {}
 }
 
 test.cb('saves in localStorage, resets and disposes', t => {
