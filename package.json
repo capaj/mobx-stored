@@ -1,6 +1,6 @@
 {
   "name": "mobx-stored",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "localstorage/sessionstorage persisted observables",
   "main": "dist/stored-observable.cjs.js",
   "module": "dist/stored-observable.es.js",
@@ -15,7 +15,11 @@
     "type": "git",
     "url": "git+https://github.com/capaj/mobx-stored.git"
   },
-  "keywords": ["mobx", "observable", "localstorage"],
+  "keywords": [
+    "mobx",
+    "observable",
+    "localstorage"
+  ],
   "author": "capajj@gmail.com",
   "license": "MIT",
   "bugs": {
@@ -31,29 +35,34 @@
     "babel-register": "^6.26.0",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "localstorage-polyfill": "^1.0.1",
-    "mobx": "^4.1.1",
-    "prettier": "^1.11.1",
-    "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^3.0.3",
+    "mobx": "^4.2.0",
+    "prettier": "^1.12.1",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
     "standard": "^11.0.1",
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "eslint-plugin-prettier": "^2.6.0"
   },
   "peerDependencies": {
     "mobx": ">=4"
   },
   "ava": {
-    "files": ["**/*.spec.js"],
-    "require": ["babel-register"],
+    "files": [
+      "**/*.spec.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
     "babel": "inherit"
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isobject": "^3.0.2",
     "lodash.merge": "^4.6.1",
     "traverse": "^0.6.6"
   }

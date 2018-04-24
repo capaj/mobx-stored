@@ -9,6 +9,10 @@ global.window = {
   removeEventListener() {}
 }
 
+test('throws', t => {
+  t.throws(() => localStored('test', { reset: 1 }, 1))
+})
+
 test.cb('saves in localStorage, resets and disposes', t => {
   const def = { a: 1, b: 2 }
   const obs = localStored('test', def, 1)
@@ -37,6 +41,15 @@ test('resets even if stored before', t => {
   obs.reset()
   t.is(obs.a, 1)
   t.is(obs.b, 2)
+})
+
+test('resets even props added', t => {
+  const def = { a: 1 }
+  const obs = localStored('testThree', def, 1)
+  obs.extend({ b: 1 })
+  obs.reset()
+  t.is(obs.a, 1)
+  t.is(obs.b, undefined)
 })
 
 test.cb('extends existing value', t => {

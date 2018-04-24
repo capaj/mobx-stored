@@ -2,6 +2,20 @@
 import { observable, autorun, set, toJS } from 'mobx'
 import merge from 'lodash.merge'
 import cloneDeep from 'lodash.clonedeep'
+import isObject from 'lodash.isobject'
+const reservedKeys = ['reset', 'extend', 'destroy']
+
+const checkReservedKeys = obj => {
+  if (isObject(obj)) {
+    Object.keys(obj).forEach(key => {
+      if (reservedKeys.includes(key)) {
+        throw new TypeError(
+          `property ${key} is reserved for storedObservable method`
+        )
+      }
+    })
+  }
+}
 
 function factory(storage) {
   return function storedObservable(
@@ -10,6 +24,8 @@ function factory(storage) {
     autorunOpts = { delay: 500 }
   ) {
     let fromStorage = storage.getItem(key)
+    checkReservedKeys(defaultValue)
+    checkReservedKeys(fromStorage)
 
     const defaultClone = cloneDeep(defaultValue) // we don't want to modify the given object, because userscript might want to use the original object to reset the state back to default values some time later
     if (fromStorage) {
@@ -39,6 +55,14 @@ function factory(storage) {
     obsVal.reset = () => {
       disposeAutorun && disposeAutorun()
       set(obsVal, defaultValue)
+      Object.keys(obsVal).forEach(key => {
+        if (
+          !defaultValue.hasOwnProperty(key) &&
+          !['reset', 'extend', 'destroy'].includes(key)
+        ) {
+          delete obsVal[key]
+        }
+      })
       establishAutorun()
     }
     obsVal.extend = obj => {
