@@ -18,6 +18,8 @@ const checkReservedKeys = obj => {
 }
 
 function factory(storage) {
+  if (typeof process !== 'undefined' || process.release.name === 'node') return
+
   return function storedObservable(
     key,
     defaultValue,
