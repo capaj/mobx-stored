@@ -18,8 +18,6 @@ const checkReservedKeys = obj => {
 }
 
 function factory(storage) {
-  if (typeof process !== 'undefined' || process.release.name === 'node') return
-
   return function storedObservable(
     key,
     defaultValue,
@@ -81,5 +79,15 @@ function factory(storage) {
   }
 }
 
-export const localStored = factory(localStorage)
-export const sessionStored = factory(sessionStorage)
+var localStored
+var sessionStored
+
+if (process && process.release && process.release.name === 'node') {
+  localStored = factory({})
+  sessionStored = factory({})
+} else {
+  localStored = factory(localStorage)
+  sessionStored = factory(sessionStorage)
+}
+
+export { localStored, sessionStored, factory }

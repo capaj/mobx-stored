@@ -2,7 +2,9 @@
 import './sessionStorage-mock'
 import 'localstorage-polyfill'
 import test from 'ava'
-import { localStored } from './stored-observable'
+
+import { factory } from './stored-observable'
+const localStored = factory(global.localStorage)
 
 global.window = {
   addEventListener() {},
