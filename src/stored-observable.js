@@ -1,5 +1,5 @@
 /* global localStorage, sessionStorage */
-import { observable, autorun, set, toJS } from 'mobx'
+import { observable, autorun, set, remove, toJS } from 'mobx'
 import merge from 'lodash.merge'
 import cloneDeep from 'lodash.clonedeep'
 import isObject from 'lodash.isobject'
@@ -60,7 +60,7 @@ function factory(storage) {
           !defaultValue.hasOwnProperty(key) &&
           !['reset', 'extend', 'destroy'].includes(key)
         ) {
-          delete obsVal[key]
+          remove(obsVal, key)
         }
       })
       establishAutorun()
