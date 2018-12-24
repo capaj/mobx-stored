@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom"],
+    "target": "es2015",
+    "strict": true,
+    "outDir": "./dist",
+    "preserveConstEnums": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "removeComments": true,
+    "inlineSourceMap": true,
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/**/*", "**/*-spec.ts"]
+}

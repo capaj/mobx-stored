@@ -1,10 +1,10 @@
-import babel from 'rollup-plugin-babel'
+import typescript from 'rollup-plugin-typescript2'
 
 export default {
-  entry: 'src/stored-observable.js',
-  plugins: [babel()],
-  targets: [
-    { dest: 'dist/stored-observable.cjs.js', format: 'cjs' },
-    { dest: 'dist/stored-observable.es.js', format: 'es' }
+  input: 'src/stored-observable.ts',
+  plugins: [typescript()],
+  output: [
+    { file: 'dist/stored-observable.cjs.js', format: 'cjs' },
+    { file: 'dist/stored-observable.es.js', format: 'es' }
   ]
 }

@@ -1,22 +1,18 @@
 {
   "env": {
-  "rollup": {
-    "presets": [
+    "rollup": {
+      "presets": [
+        "@babel/preset-typescript",
         [
-          "es2015",
+          "@babel/preset-env",
           {
             "modules": false
           }
         ]
-      ],
-      "plugins": [
-        "external-helpers"
       ]
     },
     "ava": {
-      "presets": [
-        "es2015"
-      ]
+      "presets": ["@babel/preset-typescript", "@babel/preset-env"]
     }
   }
 }

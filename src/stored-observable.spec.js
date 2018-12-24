@@ -9,11 +9,11 @@ global.window = {
   removeEventListener() {}
 }
 
-test('throws', t => {
+test('throws', (t) => {
   t.throws(() => localStored('test', { reset: 1 }, 1))
 })
 
-test.cb('saves in localStorage, resets and disposes', t => {
+test.cb('saves in localStorage, resets and disposes', (t) => {
   const def = { a: 1, b: 2 }
   const obs = localStored('test', def, 1)
   setTimeout(() => {
@@ -34,7 +34,7 @@ test.cb('saves in localStorage, resets and disposes', t => {
   }, 2)
 })
 
-test('resets even if stored before', t => {
+test('resets even if stored before', (t) => {
   localStorage.testThree = '{"a":10,"b":11}'
   const def = { a: 1, b: 2 }
   const obs = localStored('testThree', def, 1)
@@ -43,7 +43,7 @@ test('resets even if stored before', t => {
   t.is(obs.b, 2)
 })
 
-test('resets even props added', t => {
+test('resets even props added', (t) => {
   const def = { a: 1 }
   const obs = localStored('testThree', def, 1)
   obs.extend({ b: 1 })
@@ -52,7 +52,7 @@ test('resets even props added', t => {
   t.is(obs.b, undefined)
 })
 
-test.cb('extends existing value', t => {
+test.cb('extends existing value', (t) => {
   localStorage.testTwo = '{"a":5,"b":8}'
   const def = { a: 1, b: 2, c: 0 }
   const obs = localStored('testTwo', def, 1)
@@ -61,7 +61,7 @@ test.cb('extends existing value', t => {
   t.end()
 })
 
-test.cb('can extend stored observable itself', t => {
+test.cb('can extend stored observable itself', (t) => {
   const def = { a: 1, b: 2, c: 3 }
   const obs = localStored('testFour', def, 1)
   obs.extend({ d: 4 })
