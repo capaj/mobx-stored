@@ -11,7 +11,7 @@ import { sessionStored } from 'mobx-stored' // for using sessionStorage rather t
 const defaultUser = { email: null, firstname: null, lastname: null }
 const observableUserProfile = localStored('userProfile', defaultUser, {
   delay: 500
-}) // last parameter is optional-mobx autorn options for running the save operation into the storage. Use higher delay if you store a lot of data
+}) // last parameter is optional-mobx autorun options for running the save operation into the storage. Use higher delay if you store a lot of data
 
 // now any changes made to the observableUserProfile are synced in localStorage
 
@@ -33,5 +33,5 @@ observableUserProfile.extend({
 
 //Don't need it anymore?
 
-observableUserProfile.destroy()
+observableUserProfile.destroy() // removes it from localStorage
 ```
