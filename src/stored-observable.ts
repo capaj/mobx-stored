@@ -32,6 +32,7 @@ function factory(storage: Storage) {
     let fromStorage = storage.getItem(key)
     checkReservedKeys(defaultValue)
     checkReservedKeys(fromStorage)
+    let disposeAutorun: () => any
 
     const defaultClone: T & StoredObservable = {
       ...((cloneDeep(defaultValue) as any) as T),
@@ -64,7 +65,6 @@ function factory(storage: Storage) {
     }
 
     const obsVal = observable(defaultClone)
-    let disposeAutorun: () => any
     const establishAutorun = () => {
       disposeAutorun = autorun(() => {
         storage.setItem(key, JSON.stringify(toJS(obsVal)))
